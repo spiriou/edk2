@@ -361,7 +361,6 @@
 !endif
 
 [PcdsFixedAtBuild]
-  gEfiMdeModulePkgTokenSpaceGuid.PcdPciDisableBusEnumeration|TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdStatusCodeMemorySize|1
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
   gEfiMdePkgTokenSpaceGuid.PcdMaximumGuidedExtractHandler|0x10
@@ -471,9 +470,9 @@
   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfHostBridgePciDevId|0
   gUefiOvmfPkgTokenSpaceGuid.PcdPciIoBase|0x0
   gUefiOvmfPkgTokenSpaceGuid.PcdPciIoSize|0x0
-  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base|0x0
-  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Size|0x0
-  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Base|0x0
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Base|0xC0000000
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio32Size|0x35000000
+  gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Base|0x800000000
   gUefiOvmfPkgTokenSpaceGuid.PcdPciMmio64Size|0x800000000
 
   gEfiMdePkgTokenSpaceGuid.PcdFSBClock|100000000
@@ -560,7 +559,7 @@
   OvmfPkg/PciHotPlugInitDxe/PciHotPlugInit.inf
   MdeModulePkg/Bus/Pci/PciHostBridgeDxe/PciHostBridgeDxe.inf {
     <LibraryClasses>
-      PciHostBridgeLib|OvmfPkg/Library/PciHostBridgeLibScan/PciHostBridgeLibScan.inf
+      PciHostBridgeLib|OvmfPkg/Library/PciHostBridgeLib/PciHostBridgeLib.inf
       PciHostBridgeUtilityLib|OvmfPkg/Library/PciHostBridgeUtilityLib/PciHostBridgeUtilityLib.inf
       NULL|OvmfPkg/Library/PlatformHasIoMmuLib/PlatformHasIoMmuLib.inf
   }
