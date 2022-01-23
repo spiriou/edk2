@@ -29,10 +29,10 @@ UINT16     mHostBridgeDevId;
 // (for configuring PCI Interrupt Line register)
 //
 CONST UINT8  PciHostIrqs[] = {
-  0x0a, // LNKA, LNKE
-  0x0a, // LNKB, LNKF
-  0x0b, // LNKC, LNKG
-  0x0b  // LNKD, LNKH
+  5,  // LNKA, LNKE
+  10, // LNKB, LNKF
+  11, // LNKC, LNKG
+  5   // LNKD, LNKH
 };
 
 //
@@ -1397,6 +1397,16 @@ PciAcpiInitialization (
       PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x61), PciHostIrqs[1]); // B
       PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x62), PciHostIrqs[2]); // C
       PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x63), PciHostIrqs[3]); // D
+
+      if (XenDetected ()) {
+          DEBUG((DEBUG_INFO, "Disable PCI LNK E-H\n"));
+          PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x68), 0x80); // E
+          PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x69), 0x80); // F
+          PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x6a), 0x80); // G
+          PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x6b), 0x80); // H
+          break;
+      }
+
       PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x68), PciHostIrqs[0]); // E
       PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x69), PciHostIrqs[1]); // F
       PciWrite8 (PCI_LIB_ADDRESS (0, 0x1f, 0, 0x6a), PciHostIrqs[2]); // G
