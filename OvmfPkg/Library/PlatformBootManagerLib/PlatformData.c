@@ -200,6 +200,10 @@ PLATFORM_CONSOLE_CONNECT_ENTRY  gXenPlatformConsole[] = {
     (CONSOLE_OUT | CONSOLE_IN | STD_ERROR)
   },
   {
+    (EFI_DEVICE_PATH_PROTOCOL *)&gUsbKeyboardDevicePath,
+    CONSOLE_IN
+  },
+  {
     NULL,
     0
   }
